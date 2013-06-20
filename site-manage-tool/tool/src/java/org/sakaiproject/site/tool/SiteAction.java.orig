@@ -188,9 +188,6 @@ public class SiteAction extends PagedResourceActionII {
 	private static org.sakaiproject.sitemanage.api.UserNotificationProvider userNotificationProvider = (org.sakaiproject.sitemanage.api.UserNotificationProvider) ComponentManager
 	.get(org.sakaiproject.sitemanage.api.UserNotificationProvider.class);
 	
-	private static org.sakaiproject.sitemanage.api.RubricService rubService = (org.sakaiproject.sitemanage.api.RubricService) ComponentManager
-	.get(org.sakaiproject.sitemanage.api.RubricService.class);
-	
 	private static final String SITE_MODE_SITESETUP = "sitesetup";
 
 	private static final String SITE_MODE_SITEINFO = "siteinfo";
@@ -2666,17 +2663,6 @@ public class SiteAction extends PagedResourceActionII {
 				context.put("duplicatedName", state
 						.getAttribute(SITE_DUPLICATED_NAME));
 			}
-			
-			//DN 2013-04-22: if allow show irubric
-			if(rubService.isShowiRubricLink()) {
-				//Issue 53: DN 2012-08-14: check site have been attached rubric
-				Boolean haveAttach = rubService.checkAttachRubric(site.getId());
-				context.put("isHaveAttach", haveAttach);
-
-			} else {
-				context.put("isHaveAttach", Boolean.FALSE);
-			}
-
 			context.put("titleMaxLength", state.getAttribute(STATE_SITE_TITLE_MAX));
 			return (String) getContext(data).get("template") + TEMPLATE[29];
 		case 36:
@@ -7578,13 +7564,7 @@ public class SiteAction extends PagedResourceActionII {
 							
 								// import tool content
 								importToolContent(oSiteId, site, false);
-								
-								//Issue 53: DN 2012-08-13:copy rubric
-								String rubric = params.getString("selectTooliRubric");
-								if(rubService != null && rubric != null && rubric.equals("cpiRubric")) {
-										rubService.transferRubric(oSiteId,site.getId());
-								}
-								
+	
 								String siteType = site.getType();
 								if (siteType != null && siteType.equals((String) state.getAttribute(STATE_COURSE_SITE_TYPE))) {
 									// for course site, need to

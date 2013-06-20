@@ -82,5 +82,15 @@
     			bean="org.sakaiproject.springframework.orm.hibernate.GlobalSessionFactory" />
     	</property>
     </bean>
-
+	
+	<bean id="org.sakaiproject.sitemanage.api.RubricService"
+    	class="org.sakaiproject.sitemanage.impl.RubricServiceImpl"
+    	singleton="true" init-method="init" destroy-method="destroy">
+    	<property name="sessionFactory">
+    		<ref
+    			bean="org.sakaiproject.springframework.orm.hibernate.GlobalSessionFactory" />
+    	</property>
+    	<property name="rubricManager" ref="com.reazon.tool.irubric.IRubricManager"/>
+    </bean>
+	
 </beans>

@@ -47,6 +47,13 @@
 										#end
 									</select> 
 								</p>
+							#if($!isHaveAttach)	
+								<p>
+									<span class="reqStar"></span>
+									<input id="cpiRubric" type="checkbox" value="cpiRubric" name="selectTooliRubric">
+									<label for="titleiRubric"> Copy iRubric selections for gradebook items </label>
+								</p>
+							#end
 						#end	
 				<input type="hidden" name="back" value="12" />
 				<input type="hidden" name="continue" value="12" />

@@ -32,6 +32,20 @@
             <groupId>org.sakaiproject.kernel</groupId>
             <artifactId>sakai-kernel-util</artifactId>
         </dependency>
+        <!-- irubric dependencies -->
+        <dependency>
+            <groupId>org.sakaiproject</groupId>
+            <artifactId>sakai-gradebook-irubric-api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <!-- add maping irubric -->
+        <dependency>
+            <groupId>org.sakaiproject</groupId>
+            <artifactId>sakai-gradebook-irubric</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>sakai-site-manage-api</artifactId>
